@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract ErrorHandlingContract {
+    uint public value;
+
+    function setValue(uint _newValue) public {
+        require(_newValue != 0, "New value must not be zero");
+        assert(_newValue != value);
+        value = _newValue;
+    }
+    
+    function divide(uint _numerator, uint _denominator) public pure returns (uint) {
+        require(_denominator != 0, "Denominator cannot be zero");
+        return _numerator / _denominator;
+    }
+    
+    function assertExample(uint _input) public pure returns (uint) {
+        assert(_input > 0);
+        return _input * 2;
+    }
+    
+    function revertExample() public pure {
+        revert("This transaction has been reverted");
+    }
+}
